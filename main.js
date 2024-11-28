@@ -1,4 +1,3 @@
-const body = document.querySelector("body");
 const container = document.getElementById("container");
 
 const widthPixels = window.screen.width;
@@ -45,9 +44,11 @@ console.log("width goal in mm is 528.6");
 function createAndAppen() {
   let p = document.createElement("p");
   let p1 = document.createElement("p");
+  let p3 = document.createElement("p");
   p.innerText = mmWidth;
   p1.innerText = mmHeigth;
-  container.append(p, p1);
+  p3.innerText = dpi;
+  container.append(p, p1, dpi);
 }
 
 createAndAppen();

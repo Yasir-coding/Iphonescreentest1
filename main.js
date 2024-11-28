@@ -45,10 +45,10 @@ function createAndAppen() {
   let p = document.createElement("p");
   let p1 = document.createElement("p");
   let p3 = document.createElement("p");
-  p.innerText = mmWidth;
-  p1.innerText = mmHeigth;
-  p3.innerText = dpi;
-  container.append(p, p1, dpi);
+  p.innerText = "mm width " + mmWidth;
+  p1.innerText = "mm height " + mmHeigth;
+  p3.innerText = "dpi " + dpi;
+  container.append(p, p1, p3);
 }
 
 createAndAppen();

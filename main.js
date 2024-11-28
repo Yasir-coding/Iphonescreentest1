@@ -1,4 +1,5 @@
 const body = document.querySelector("body");
+const container = document.getElementById("container");
 
 const widthPixels = window.screen.width;
 
@@ -40,3 +41,11 @@ console.log("mm height " + mmHeigth);
 console.log("height goal in mm is 298.1");
 
 console.log("width goal in mm is 528.6");
+
+function createAndAppen() {
+  let p = document.createElement("p");
+  p.innerText = mmWidth;
+  container.appendChild(p);
+}
+
+createAndAppen();

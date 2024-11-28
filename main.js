@@ -44,8 +44,10 @@ console.log("width goal in mm is 528.6");
 
 function createAndAppen() {
   let p = document.createElement("p");
+  let p1 = document.createElement("p");
   p.innerText = mmWidth;
-  container.appendChild(p);
+  p1.innerText = mmHeigth;
+  container.append(p, p1);
 }
 
 createAndAppen();

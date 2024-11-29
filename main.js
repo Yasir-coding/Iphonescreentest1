@@ -35,7 +35,11 @@ const mmHeigth = Math.floor(((heightPixels * 25.4) / dpi) * 10) / 10;
 
 const pPI = (dpr * sqrtOfHW) / 6.06;
 
-console.log("PPI " + pPI);
+const ppm = Math.floor(pPI) / 25.4;
+
+const mmpx = 25.4 / Math.floor(pPI);
+
+console.log("PPI " + Math.floor(pPI));
 
 console.log("mm width " + mmWidth);
 
@@ -44,6 +48,10 @@ console.log("mm height " + mmHeigth);
 console.log("height goal in mm is 298.1");
 
 console.log("width goal in mm is 528.6");
+
+console.log("px per mm delat dpr " + ppm / dpr);
+
+console.log("mm per px gånger dpr " + mmpx * dpr);
 
 function createAndAppen() {
   let p = document.createElement("p");
@@ -63,4 +71,11 @@ function createAndAppen() {
 
 createAndAppen();
 
-console.log("jkdfnkjdfn");
+const circle = document.getElementById("circle");
+
+const physicalmm30 = (ppm / dpr) * 30;
+console.log(physicalmm30);
+
+circle.style.width = `${physicalmm30}px`;
+
+circle.style.height = `${physicalmm30}px`;

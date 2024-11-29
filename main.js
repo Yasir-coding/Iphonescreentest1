@@ -71,11 +71,14 @@ function createAndAppen() {
 
 createAndAppen();
 
-const circle = document.getElementById("circle");
+for (let i = 0; i < 2; i++) {
+  const circle = document.createElement("div");
 
-const physicalmm30 = (ppm / dpr) * 30;
-console.log(physicalmm30);
+  const physicalmm30 = (ppm / dpr) * 30;
+  console.log(physicalmm30);
 
-circle.style.width = `${physicalmm30}px`;
+  circle.style.width = `${physicalmm30}px`;
 
-circle.style.height = `${physicalmm30}px`;
+  circle.style.height = `${physicalmm30}px`;
+  document.body.append(circle);
+}

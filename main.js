@@ -33,6 +33,10 @@ const mmWidth = Math.floor(((widthPixels * 25.4) / dpi) * 10) / 10;
 
 const mmHeigth = Math.floor(((heightPixels * 25.4) / dpi) * 10) / 10;
 
+const pPI = widthPixels ** 2 + heightPixels ** 2 / 6.06;
+
+console.log("PPI " + pPI);
+
 console.log("mm width " + mmWidth);
 
 console.log("mm height " + mmHeigth);
@@ -44,11 +48,13 @@ console.log("width goal in mm is 528.6");
 function createAndAppen() {
   let p = document.createElement("p");
   let p1 = document.createElement("p");
+  let p2 = document.createElement("p");
   let p3 = document.createElement("p");
   p.innerText = "mm width " + mmWidth;
   p1.innerText = "mm height " + mmHeigth;
+  p2.innerText = "ppi " + pPI;
   p3.innerText = "dpi " + dpi;
-  container.append(p, p1, p3);
+  container.append(p, p1, p2, p3);
 }
 
 createAndAppen();

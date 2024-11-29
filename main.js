@@ -75,7 +75,8 @@ const circle = document.getElementById("circle");
 
 const physicalmm30 = (ppm / dpr) * 30;
 console.log(physicalmm30);
+console.log(physicalmm30 * 0.66);
 
-circle.style.width = `${physicalmm30 * 0.75}px`;
+circle.style.width = `${physicalmm30 * 0.66}px`;
 
-circle.style.height = `${physicalmm30 * 0.75}px`;
+circle.style.height = `${physicalmm30 * 0.66}px`;

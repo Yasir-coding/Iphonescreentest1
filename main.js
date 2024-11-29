@@ -51,6 +51,7 @@ function createAndAppen() {
   let p2 = document.createElement("p");
   let p3 = document.createElement("p");
   let p4 = document.createElement("p");
+  let p5 = document.createElement("p");
   p.innerText = "mm width " + mmWidth;
   p1.innerText = "mm height " + mmHeigth;
   p2.innerText = "ppi test " + pPI;

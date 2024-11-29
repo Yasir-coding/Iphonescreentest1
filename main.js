@@ -50,11 +50,14 @@ function createAndAppen() {
   let p1 = document.createElement("p");
   let p2 = document.createElement("p");
   let p3 = document.createElement("p");
+  let p4 = document.createElement("p");
   p.innerText = "mm width " + mmWidth;
   p1.innerText = "mm height " + mmHeigth;
-  p2.innerText = "ppi test" + pPI;
+  p2.innerText = "ppi test " + pPI;
   p3.innerText = "dpi " + dpi;
-  container.append(p, p1, p2, p3);
+  p4.innerText = "width in pixels " + widthPixels;
+  p5.innerText = "height in pixels " + heightPixels;
+  container.append(p, p1, p2, p3, p4, p5);
 }
 
 createAndAppen();

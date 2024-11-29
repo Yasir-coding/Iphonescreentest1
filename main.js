@@ -52,7 +52,7 @@ function createAndAppen() {
   let p3 = document.createElement("p");
   p.innerText = "mm width " + mmWidth;
   p1.innerText = "mm height " + mmHeigth;
-  p2.innerText = "ppi " + pPI;
+  p2.innerText = "ppi test" + pPI;
   p3.innerText = "dpi " + dpi;
   container.append(p, p1, p2, p3);
 }

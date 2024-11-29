@@ -33,7 +33,7 @@ const mmWidth = Math.floor(((widthPixels * 25.4) / dpi) * 10) / 10;
 
 const mmHeigth = Math.floor(((heightPixels * 25.4) / dpi) * 10) / 10;
 
-const pPI = Math.sqrt(widthPixels ** 2 + heightPixels ** 2) / 6.06;
+const pPI = (dpr * sqrtOfHW) / 6.06;
 
 console.log("PPI " + pPI);
 

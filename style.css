@@ -2,7 +2,40 @@
   padding: 0;
   margin: 0;
 }
-div {
+
+#circle0 {
   border: solid 0.5px black;
+  border-radius: 1000000000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#circle1 {
+  border: solid 0.5px black;
+  border-radius: 1000000000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#innerCirlce0 {
+  border: solid 0.5px black;
+  height: 3px;
+  width: 3px;
+  border-radius: 1000000000px;
+}
+
+#innerCirlce1 {
+  border: solid 0.5px black;
+  height: 3px;
+  width: 3px;
   border-radius: 1000000000px;
 }

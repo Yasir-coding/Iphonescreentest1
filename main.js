@@ -1,4 +1,5 @@
 const container = document.getElementById("container");
+const body = document.querySelector("body");
 
 const widthPixels = window.screen.width;
 
@@ -18,14 +19,20 @@ console.log("dpr " + dpr);
 //   )
 // );
 
-//sqrtOfHW står för roten ur höjden^2 + bredden^2
+//sqrtOfHW is the root of height^2 + width^2
 const sqrtOfHW = Math.sqrt(widthPixels ** 2 + heightPixels ** 2);
 
 console.log(sqrtOfHW);
 
 const roundedSqrt = Math.round(sqrtOfHW);
 
-const dpi = Math.floor((roundedSqrt / 6.06) * 10) / 10;
+//the diagionalscreensize is hardcoded but the idea is that to get it externally
+
+const diagonalScreenSize = 6.06;
+
+const averagePD = 60;
+
+const dpi = Math.floor((roundedSqrt / diagonalScreenSize) * 10) / 10;
 
 console.log("dpi " + dpi);
 
@@ -33,7 +40,7 @@ const mmWidth = Math.floor(((widthPixels * 25.4) / dpi) * 10) / 10;
 
 const mmHeigth = Math.floor(((heightPixels * 25.4) / dpi) * 10) / 10;
 
-const pPI = (dpr * sqrtOfHW) / 6.06;
+const pPI = (dpr * sqrtOfHW) / diagonalScreenSize;
 
 const ppm = Math.floor(pPI) / 25.4;
 
@@ -52,6 +59,8 @@ console.log("width goal in mm is 528.6");
 console.log("px per mm delat dpr " + ppm / dpr);
 
 console.log("mm per px gånger dpr " + mmpx * dpr);
+
+console.log(body.style.height);
 
 function createAndAppen() {
   let p = document.createElement("p");
@@ -73,12 +82,26 @@ createAndAppen();
 
 for (let i = 0; i < 2; i++) {
   const circle = document.createElement("div");
+  const innerCircle = document.createElement("div");
+
+  innerCircle.id = "innerCirlce" + i;
+  circle.id = "circle" + i;
 
   const physicalmm30 = (ppm / dpr) * 30;
-  console.log(physicalmm30);
 
   circle.style.width = `${physicalmm30}px`;
-
   circle.style.height = `${physicalmm30}px`;
+  //   circle.style.marginLeft = `${distanceFromPd}px`;
+  //   circle.style.marginRight = `${distanceFromPd}px`;
+
   document.body.append(circle);
+  circle.append(innerCircle);
 }
+
+const circle0 = document.getElementById("circle0");
+const circle1 = document.getElementById("circle1");
+const distanceFromPd = ((ppm / dpr) * averagePD) / 2;
+console.log(distanceFromPd);
+
+circle0.style.marginRight = `${distanceFromPd}px`;
+circle1.style.marginLeft = `${distanceFromPd}px`;

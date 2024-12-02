@@ -80,14 +80,13 @@ function createAndAppen() {
 
 createAndAppen();
 
+const physicalmm30 = (ppm / dpr) * 30;
 for (let i = 0; i < 2; i++) {
   const circle = document.createElement("div");
   const innerCircle = document.createElement("div");
 
   innerCircle.id = "innerCirlce" + i;
   circle.id = "circle" + i;
-
-  const physicalmm30 = (ppm / dpr) * 30;
 
   circle.style.width = `${physicalmm30}px`;
   circle.style.height = `${physicalmm30}px`;
@@ -101,7 +100,8 @@ for (let i = 0; i < 2; i++) {
 const circle0 = document.getElementById("circle0");
 const circle1 = document.getElementById("circle1");
 const distanceFromPd = ((ppm / dpr) * averagePD) / 2;
+const distancePdMinusCirclesize = distanceFromPd - physicalmm30 / 2;
 console.log(distanceFromPd);
 
-circle0.style.marginRight = `${distanceFromPd}px`;
-circle1.style.marginLeft = `${distanceFromPd}px`;
+circle0.style.marginRight = `${distancePdMinusCirclesize}px`;
+circle1.style.marginLeft = `${distancePdMinusCirclesize}px`;

@@ -65,13 +65,18 @@ function createAndAppen() {
   let p3 = document.createElement("p");
   let p4 = document.createElement("p");
   let p5 = document.createElement("p");
+  let p6 = document.createElement("p");
+  let p7 = document.createElement("p");
   p.innerText = "mm width " + mmWidth;
   p1.innerText = "mm height " + mmHeigth;
   p2.innerText = "ppi test " + pPI;
   p3.innerText = "dpi " + dpi;
   p4.innerText = "width in pixels " + widthPixels;
   p5.innerText = "height in pixels " + heightPixels;
-  container.append(p, p1, p2, p3, p4, p5);
+
+  p6.innerText = "px per mm delat dpr " + ppm / dpr;
+  p7.innerText = "mm per px gånger dpr " + mmpx * dpr;
+  container.append(p, p1, p2, p3, p4, p5, p6, p7);
 }
 
 createAndAppen();

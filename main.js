@@ -52,10 +52,6 @@ console.log("mm width " + mmWidth);
 
 console.log("mm height " + mmHeigth);
 
-console.log("height goal in mm is 298.1");
-
-console.log("width goal in mm is 528.6");
-
 console.log("px per mm delat dpr " + ppm / dpr);
 
 console.log("mm per px gånger dpr " + mmpx * dpr);
@@ -102,6 +98,7 @@ const circle1 = document.getElementById("circle1");
 const distanceFromPd = ((ppm / dpr) * averagePD) / 2;
 const distancePdMinusCirclesize = distanceFromPd - physicalmm30 / 2;
 console.log(distanceFromPd);
+console.log(distancePdMinusCirclesize);
 
 circle0.style.marginRight = `${distancePdMinusCirclesize}px`;
 circle1.style.marginLeft = `${distancePdMinusCirclesize}px`;

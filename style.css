@@ -3,6 +3,9 @@
   margin: 0;
 }
 
+#container {
+  display: none;
+}
 #circle0 {
   border: solid 0.5px black;
   border-radius: 1000000000px;

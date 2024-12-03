@@ -1,85 +1,69 @@
-const container = document.getElementById("container");
-const body = document.querySelector("body");
+// container is the div where the values are displayed and connected to the function further down that also is commented.
 
-const widthPixels = window.screen.width;
+// const container = document.getElementById("container");
 
-const heightPixels = window.screen.height;
+const widthInPixels = window.screen.width;
 
-const dpr = window.devicePixelRatio || 1;
+const heightInPixels = window.screen.height;
 
-console.log("width in pixels " + widthPixels);
+const devicePixelRatio = window.devicePixelRatio || 1;
 
-console.log("height in pixels " + heightPixels);
+//the diagonalPhysicalScreenSize(inches) is hardcoded but the idea is that to get it externally
+const diagonalPhysicalScreenSize = 5.5;
 
-console.log("dpr " + dpr);
+// Average pupil distance is hardcoded and the idea is that the user is supposed to submit.
+const averagePupilDistance = 62;
 
-// const dpi = Math.round(
-//   Math.sqrt(
-//     ((heightPixels * dpr) / 25.4) ** 2 + ((widthPixels * dpr) / 25.4) ** 2
-//   )
-// );
+//1 physical inch is equivalent to 25.4 physical milimeters
+const inchesToMilimeter = 25.4;
 
-//sqrtOfHW is the root of height^2 + width^2
-const sqrtOfHW = Math.sqrt(widthPixels ** 2 + heightPixels ** 2);
+// diagonalInPixels is the squareroot of heigth and width in pixels
+const diagonalInPixels = Math.sqrt(widthInPixels ** 2 + heightInPixels ** 2);
 
-console.log("Sqrt: " + sqrtOfHW);
+// Reason for * 10 / 10 is so that the decimals is placed in th correct manner.
+const dotsPerInch =
+  Math.floor((diagonalInPixels / diagonalPhysicalScreenSize) * 10) / 10;
 
-const roundedSqrt = Math.round(sqrtOfHW);
+// To calculate the physical width in milimeter this formula is used. width in pixels times(*) inches to milimeter(24.5) then divided by dots per inch.
+// And the * 10/10 is used to get the decimals in correct manner
+const physicalWidthInMilimeter =
+  Math.floor(((widthInPixels * inchesToMilimeter) / dotsPerInch) * 10) / 10;
 
-//the diagionalscreensize is hardcoded but the idea is that to get it externally
+// To calculate the physical heigth in milimeter this formula is used. heigth in pixels times(*) inches to milimeter(24.5) then divided by dots per inch.
+// And the * 10/10 is used to get the decimals in correct manner
+const physicalHeigthInMilimeter =
+  Math.floor(((heightInPixels * inchesToMilimeter) / dotsPerInch) * 10) / 10;
 
-const diagonalScreenSize = 5.5;
+// To calculate pixels per inch formula. Device pixel ratio times(*) diagonal in pixel the divided by the physical diagonal size in inches.
+// Pixel per inch is the same as pixel density, just a different term.
+const pixelsPerInch =
+  (devicePixelRatio * diagonalInPixels) / diagonalPhysicalScreenSize;
 
-const averagePD = 62;
+// To calculate pixels per milimeter you divide pixels per inch by inches to milimeter
+const pixelsPerMilimeter = Math.floor(pixelsPerInch) / inchesToMilimeter;
 
-const dpi = Math.floor((roundedSqrt / diagonalScreenSize) * 10) / 10;
+// To calculate Milimeter per pixel you divide inches to milimeter by pixel per inch
+const milimetersPerPixel = inchesToMilimeter / Math.floor(pixelsPerInch);
 
-console.log("dpi " + dpi);
+// Logical pixels per milimeter is the number of logical pixels presented in one milimeter ocf screen space
+const logicalPixelsPerMilimeter = pixelsPerMilimeter / devicePixelRatio;
 
-const mmWidth = Math.floor(((widthPixels * 25.4) / dpi) * 10) / 10;
+console.log("PPI " + Math.floor(pixelsPerInch));
 
-const mmHeigth = Math.floor(((heightPixels * 25.4) / dpi) * 10) / 10;
+console.log("mm width " + physicalWidthInMilimeter);
 
-const pPI = (dpr * sqrtOfHW) / diagonalScreenSize;
+console.log("mm height " + physicalHeigthInMilimeter);
 
-const ppm = Math.floor(pPI) / 25.4;
+console.log("px per mm delat dpr " + pixelsPerMilimeter / devicePixelRatio);
 
-const mmpx = 25.4 / Math.floor(pPI);
+console.log("mm per px gånger dpr " + milimetersPerPixel * devicePixelRatio);
 
-console.log("PPI " + Math.floor(pPI));
+// physicalMilimeterFromInput is the physical milimeters added by the hardcoded value(30).
+//The reason for the value 30 is that the circles diameter is supposed to be 30 physical milimeters.
+const physicalMilimeterFromInput = milimetersPerPixel * 30;
 
-console.log("mm width " + mmWidth);
-
-console.log("mm height " + mmHeigth);
-
-console.log("px per mm delat dpr " + ppm / dpr);
-
-console.log("mm per px gånger dpr " + mmpx * dpr);
-
-function createAndAppen() {
-  let p = document.createElement("p");
-  let p1 = document.createElement("p");
-  let p2 = document.createElement("p");
-  let p3 = document.createElement("p");
-  let p4 = document.createElement("p");
-  let p5 = document.createElement("p");
-  let p6 = document.createElement("p");
-  let p7 = document.createElement("p");
-  p.innerText = "mm width " + mmWidth;
-  p1.innerText = "mm height " + mmHeigth;
-  p2.innerText = "ppi test " + pPI;
-  p3.innerText = "dpi " + dpi;
-  p4.innerText = "width in pixels " + widthPixels;
-  p5.innerText = "height in pixels " + heightPixels;
-
-  p6.innerText = "px per mm delat dpr " + ppm / dpr;
-  p7.innerText = "mm per px gånger dpr " + mmpx * dpr;
-  container.append(p, p1, p2, p3, p4, p5, p6, p7);
-}
-
-// createAndAppen();
-
-const physicalmm30 = (ppm / dpr) * 30;
+// The loop creates two outer and two inner divs and given id's.
+// The shape is modified with CSS in external css file and the size is modified with the css in js.
 for (let i = 0; i < 2; i++) {
   const circle = document.createElement("div");
   const innerCircle = document.createElement("div");
@@ -87,10 +71,8 @@ for (let i = 0; i < 2; i++) {
   innerCircle.id = "innerCirlce" + i;
   circle.id = "circle" + i;
 
-  circle.style.width = `${physicalmm30}px`;
-  circle.style.height = `${physicalmm30}px`;
-  //   circle.style.marginLeft = `${distanceFromPd}px`;
-  //   circle.style.marginRight = `${distanceFromPd}px`;
+  circle.style.width = `${physicalMilimeterFromInput}px`;
+  circle.style.height = `${physicalMilimeterFromInput}px`;
 
   document.body.append(circle);
   circle.append(innerCircle);
@@ -98,10 +80,34 @@ for (let i = 0; i < 2; i++) {
 
 const circle0 = document.getElementById("circle0");
 const circle1 = document.getElementById("circle1");
-const distanceFromPd = ((ppm / dpr) * averagePD) / 2;
-const distancePdMinusCirclesize = distanceFromPd - physicalmm30 / 2;
-console.log(distanceFromPd);
-console.log(distancePdMinusCirclesize);
+const distanceFromPd = (milimetersPerPixel * averagePupilDistance) / 2;
+const distancePdMinusCirclesize =
+  distanceFromPd - physicalMilimeterFromInput / 2;
 
 circle0.style.marginRight = `${distancePdMinusCirclesize}px`;
 circle1.style.marginLeft = `${distancePdMinusCirclesize}px`;
+
+// the commented code below is to display the different values on the screen.
+
+// function createAndAppen() {
+//   let p = document.createElement("p");
+//   let p1 = document.createElement("p");
+//   let p2 = document.createElement("p");
+//   let p3 = document.createElement("p");
+//   let p4 = document.createElement("p");
+//   let p5 = document.createElement("p");
+//   let p6 = document.createElement("p");
+//   let p7 = document.createElement("p");
+//   p.innerText = "mm width " + mmWidth;
+//   p1.innerText = "mm height " + mmHeigth;
+//   p2.innerText = "ppi test " + pPI;
+//   p3.innerText = "dpi " + dpi;
+//   p4.innerText = "width in pixels " + widthPixels;
+//   p5.innerText = "height in pixels " + heightPixels;
+
+//   p6.innerText = "px per mm delat dpr " + ppm / dpr;
+//   p7.innerText = "mm per px gånger dpr " + mmpx * dpr;
+//   container.append(p, p1, p2, p3, p4, p5, p6, p7);
+// }
+
+// createAndAppen();

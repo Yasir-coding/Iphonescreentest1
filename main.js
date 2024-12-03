@@ -22,15 +22,15 @@ console.log("dpr " + dpr);
 //sqrtOfHW is the root of height^2 + width^2
 const sqrtOfHW = Math.sqrt(widthPixels ** 2 + heightPixels ** 2);
 
-console.log(sqrtOfHW);
+console.log("Sqrt: " + sqrtOfHW);
 
 const roundedSqrt = Math.round(sqrtOfHW);
 
 //the diagionalscreensize is hardcoded but the idea is that to get it externally
 
-const diagonalScreenSize = 5.2;
+const diagonalScreenSize = 9.7;
 
-const averagePD = 60;
+const averagePD = 62;
 
 const dpi = Math.floor((roundedSqrt / diagonalScreenSize) * 10) / 10;
 
@@ -55,8 +55,6 @@ console.log("mm height " + mmHeigth);
 console.log("px per mm delat dpr " + ppm / dpr);
 
 console.log("mm per px gånger dpr " + mmpx * dpr);
-
-console.log(body.style.height);
 
 function createAndAppen() {
   let p = document.createElement("p");

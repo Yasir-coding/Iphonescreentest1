@@ -28,7 +28,7 @@ const roundedSqrt = Math.round(sqrtOfHW);
 
 //the diagionalscreensize is hardcoded but the idea is that to get it externally
 
-const diagonalScreenSize = 9.7;
+const diagonalScreenSize = 4;
 
 const averagePD = 62;
 

@@ -77,7 +77,7 @@ function createAndAppen() {
   container.append(p, p1, p2, p3, p4, p5, p6, p7);
 }
 
-createAndAppen();
+// createAndAppen();
 
 const physicalmm30 = (ppm / dpr) * 30;
 for (let i = 0; i < 2; i++) {

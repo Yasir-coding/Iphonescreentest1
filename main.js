@@ -9,7 +9,7 @@ const heightInPixels = window.screen.height;
 const devicePixelRatio = window.devicePixelRatio || 1;
 
 //the diagonalPhysicalScreenSize(inches) is hardcoded but the idea is that to get it externally
-const diagonalPhysicalScreenSize = 5.5;
+const diagonalPhysicalScreenSize = 6.06;
 
 // Average pupil distance is hardcoded and the idea is that the user is supposed to submit.
 const averagePupilDistance = 62;
@@ -48,19 +48,24 @@ const milimetersPerPixel = inchesToMilimeter / Math.floor(pixelsPerInch);
 // Logical pixels per milimeter is the number of logical pixels presented in one milimeter ocf screen space
 const logicalPixelsPerMilimeter = pixelsPerMilimeter / devicePixelRatio;
 
+console.log("width in pixels " + widthInPixels);
+
+console.log("height in pixels " + heightInPixels);
+
 console.log("PPI " + Math.floor(pixelsPerInch));
 
 console.log("mm width " + physicalWidthInMilimeter);
 
 console.log("mm height " + physicalHeigthInMilimeter);
 
-console.log("px per mm delat dpr " + pixelsPerMilimeter / devicePixelRatio);
+console.log("px per mm delat dpr " + logicalPixelsPerMilimeter);
 
 console.log("mm per px gånger dpr " + milimetersPerPixel * devicePixelRatio);
 
 // physicalMilimeterFromInput is the physical milimeters added by the hardcoded value(30).
 //The reason for the value 30 is that the circles diameter is supposed to be 30 physical milimeters.
-const physicalMilimeterFromInput = milimetersPerPixel * 30;
+const physicalMilimeterFromInput = milimetersPerPixel * 30 * devicePixelRatio;
+console.log("physical milimeter from input " + physicalHeigthInMilimeter);
 
 // The loop creates two outer and two inner divs and given id's.
 // The shape is modified with CSS in external css file and the size is modified with the css in js.
@@ -71,8 +76,8 @@ for (let i = 0; i < 2; i++) {
   innerCircle.id = "innerCirlce" + i;
   circle.id = "circle" + i;
 
-  circle.style.width = `${physicalMilimeterFromInput}px`;
-  circle.style.height = `${physicalMilimeterFromInput}px`;
+  // circle.style.width = `${physicalMilimeterFromInput}px`;
+  // circle.style.height = `${physicalMilimeterFromInput}px`;
 
   document.body.append(circle);
   circle.append(innerCircle);
@@ -80,10 +85,19 @@ for (let i = 0; i < 2; i++) {
 
 const circle0 = document.getElementById("circle0");
 const circle1 = document.getElementById("circle1");
-const distanceFromPd = (milimetersPerPixel * averagePupilDistance) / 2;
-const distancePdMinusCirclesize =
-  distanceFromPd - physicalMilimeterFromInput / 2;
+circle0.style.width = `${physicalMilimeterFromInput}px`;
+circle0.style.height = `${physicalMilimeterFromInput}px`;
 
+// To calculate the average physical pupil distance(62 milimeters) the formula is milimeter per pixel times average pupil distance.
+// Reason behind the "divide by 2" is to get the distance from the middle point between your eyes to one of the eye
+const distanceFromMiddleToOneEye =
+  (milimetersPerPixel * averagePupilDistance) / 2;
+
+// Distance pupil distance minus circle size is to get the distance for one eye minus the circles radius for placement for the circles.
+const distancePdMinusCirclesize =
+  distanceFromMiddleToOneEye - physicalMilimeterFromInput / 2;
+
+// Pushes each circle with the correct value to each side from the center
 circle0.style.marginRight = `${distancePdMinusCirclesize}px`;
 circle1.style.marginLeft = `${distancePdMinusCirclesize}px`;
 

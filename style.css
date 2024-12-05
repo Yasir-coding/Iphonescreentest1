@@ -6,7 +6,6 @@
 #container {
   width: 100vw;
   height: 95vh;
-  border: solid 1px black;
   display: flex;
   align-items: center;
   justify-content: center;
